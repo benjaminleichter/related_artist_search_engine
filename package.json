@@ -1,0 +1,31 @@
+{
+  "name": "related_artist_search_engine",
+  "version": "1.0.0",
+  "description": "A search engine for finding artists related to a searched artist by genre using spotify's api",
+  "main": "index.js",
+  "scripts": {
+    "watch": "webpack --progress --colors --watch",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Benjamin Leichter",
+  "license": "ISC",
+  "dependencies": {
+    "connect": "^3.6.2",
+    "prop-types": "^15.5.10",
+    "react": "^15.6.0",
+    "react-dom": "^15.6.0",
+    "react-redux": "^5.0.5",
+    "redux": "^3.6.0",
+    "redux-thunk": "^2.2.0",
+    "serve-static": "^1.12.3"
+  },
+  "devDependencies": {
+    "babel-core": "^6.25.0",
+    "babel-loader": "^7.0.0",
+    "babel-preset-es2015": "^6.24.1",
+    "babel-preset-react": "^6.24.1",
+    "css-loader": "^0.28.4",
+    "sass-loader": "^6.0.5",
+    "style-loader": "^0.18.2"
+  }
+}

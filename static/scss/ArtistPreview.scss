@@ -1,0 +1,57 @@
+.artist-preview {
+    font-size: 16px;
+
+    &.selected {
+        .inner {
+            // border: solid 2px #fff;
+            .artist-thumbnail {
+                opacity: 0.6;
+            }
+        }
+        .related-artists {
+            max-height: 1000px;
+        }
+    }
+    .inner {
+        float: left;
+        width: 100%;
+        height: 200px;
+        position: relative;
+        background-color: #000;
+        box-sizing: border-box;
+        cursor: pointer;
+
+        .artist-thumbnail {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            background-size: cover;
+            background-repeat: no-repeat;
+            background-position: 50% 50%;
+            opacity: 0.3;
+            z-index: 1;
+            transition: 200ms ease-in;
+            -moz-transition: 200ms ease-in;
+            -webkit-transition: 200ms ease-in;
+        }
+        .artist-info {
+            position: absolute;
+            z-index: 2;
+            color: #fff;
+            width: 200px;
+            margin-left: 50%;
+            left: -100px;
+            text-align: center;
+            font-size: 2em;
+        }
+    }
+    .related-artists {
+        max-height: 0px;
+        position: relative;
+        width: 100%;
+
+        transition: 200ms ease-in;
+        -moz-transition: 200ms ease-in;
+        -webkit-transition: 200ms ease-in;
+    }
+}

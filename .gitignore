@@ -1,0 +1,5 @@
+node_modules
+static/js/gen
+venv
+redis/dump.rdb
+.vscode
