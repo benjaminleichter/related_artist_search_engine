@@ -3,7 +3,7 @@ import json
 import requests
 import base64
 
-from python.redis_utils import get_artist_database_client, get_genre_database_client
+from python.redis_utils import get_artist_database_client, get_related_artist_database_client
 
 app = Flask(__name__)
 
@@ -51,8 +51,8 @@ def search_related_artists_by_genre(artist_name_to_exclude, genre):
     Searches Spotify API for artists matching the given genre and excluding the given artist name.
     """
 
-    genre_database_client = get_genre_database_client()
-    cached_genre_data = genre_database_client.get(genre)
+    related_artist_database_client = get_related_artist_database_client()
+    cached_genre_data = related_artist_database_client.get(artist_name_to_exclude)
 
     if cached_genre_data is None:
         access_token = _get_access_token()
@@ -69,9 +69,13 @@ def search_related_artists_by_genre(artist_name_to_exclude, genre):
             headers=headers)
 
         artists = response.json().get('artists', {})
-        genre_database_client.set(genre, json.dumps(artists))
+        data_to_cache = {
+            'genre': genre,
+            'related_artists': artists
+        }
+        related_artist_database_client.set(artist_name_to_exclude, json.dumps(data_to_cache))
     else:
-        artists = json.loads(cached_genre_data)
+        artists = json.loads(cached_genre_data).get('related_artists', {})
 
     return json.dumps({'artists': artists}), 200, {'ContentType':'application/json'}
 
