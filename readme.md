@@ -9,13 +9,13 @@
 4. Make sure you have webpack installed
     1. https://webpack.js.org/guides/installation/
 5. Enter the project directory from the command line
-6. Activate the virtual environment
+6. Activate the virtual environment created in Step 1
     1. `source venv/bin/activate`
 7. Install the Python dependencies
     1. `pip install -r requirements.txt`
 8. Install the frontend dependencies
     1. `npm install 
-9. Build frontend
+9. Build client-side code
     1. `webpack`
 10. Export the flask app
     1. `export FLASK_APP=app.py`
