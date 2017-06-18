@@ -14,7 +14,7 @@
 7. Install the Python dependencies
     1. `pip install -r requirements.txt`
 8. Install the frontend dependencies
-    1. `npm install 
+    1. `npm install`
 9. Build client-side code
     1. `webpack`
 10. Export the flask app
