@@ -19,6 +19,7 @@ export class Header extends React.Component {
                     onChange={ setSearchBarValue }
                     onEnterPress={ search }
                     value={ searchBarValue }
+                    placeholder="Search for an artist..."
                 />
                 <Button
                     onClick={ search }

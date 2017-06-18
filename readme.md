@@ -6,19 +6,21 @@
     1. https://pip.pypa.io/en/stable/installing/
 3. Install NPM for managing our frontend dependencies
     1. https://docs.npmjs.com/getting-started/installing-node
-4. Enter the project directory from the command line
-5. Activate the virtual environment
+4. Make sure you have webpack installed
+    1. https://webpack.js.org/guides/installation/
+5. Enter the project directory from the command line
+6. Activate the virtual environment
     1. `source venv/bin/activate`
-6. Install the Python dependencies
+7. Install the Python dependencies
     1. `pip install -r requirements.txt`
-7. Install the frontend dependencies
+8. Install the frontend dependencies
     1. `npm install 
-8. Build frontend
+9. Build frontend
     1. `webpack`
-9. Export the flask app
+10. Export the flask app
     1. `export FLASK_APP=app.py`
-10. Start the project server
+11. Start the project server
     1. `flask run`
-11. Open a separate tab and run the redis server
+12. Open a separate tab and run the redis server
     1. `./redis/redis-server ./redis/6379.conf`
-12. Visit http://127.0.0.1:5000/
+13. Visit http://127.0.0.1:5000/

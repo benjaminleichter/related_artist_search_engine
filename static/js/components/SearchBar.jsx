@@ -10,13 +10,19 @@ export class SearchBar extends React.Component {
         this.handleEnterPress = this.handleEnterPress.bind(this);
     }
     render() {
+        const {
+            onChange,
+            placeholder,
+            value
+        } = this.props;
         return (
             <input
                 className="search-bar"
                 type="text"
                 onKeyDown={ this.handleEnterPress }
-                onChange={ this.props.onChange }
-                value={ this.props.value }
+                onChange={ onChange }
+                value={ value }
+                placeholder={ placeholder }
             />
         );
     }
@@ -31,5 +37,6 @@ export class SearchBar extends React.Component {
 SearchBar.propTypes = {
     onChange: PropTypes.func.isRequired,
     onEnterPress: PropTypes.func.isRequired,
-    value: PropTypes.string.isRequired
+    value: PropTypes.string.isRequired,
+    placeholder: PropTypes.string.isRequired
 }

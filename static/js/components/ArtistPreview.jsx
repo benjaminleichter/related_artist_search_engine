@@ -26,15 +26,11 @@ export class ArtistPreview extends React.Component {
                 <div className="inner">
                     <div className="artist-thumbnail" style={ style } />
                     <div className="artist-info">
-                        <p>{ name }</p>
-                        <p>{ popularity }</p>
+                        <strong>{ name }</strong>
+                        <p>Popularity: { popularity }%</p>
                     </div>
                 </div>
-                <div className="related-artists">
-                    {
-                        this.props.children
-                    }
-                </div>
+                { this.props.children }
             </div>
         );
     }

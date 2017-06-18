@@ -33,14 +33,20 @@ class App extends React.Component {
         let relatedArtistElements;
         const relatedArtistIds = Object.keys(selectedArtistRelatedArtistDataById);
         if (relatedArtistIds.length > 0) {
-            relatedArtistElements = relatedArtistIds.map((artistId) => {
+            const relatedArtistRows = relatedArtistIds.map((artistId, index) => {
                 const currentArtist = selectedArtistRelatedArtistDataById[artistId];
                 return (
-                    <div key={ artistId }>
-                        { currentArtist.name }
+                    <div key={ artistId } className="related-artist">
+                        { `${ index + 1 }) ${ currentArtist.name }` }
                     </div>
                 );
             });
+            relatedArtistElements = (
+                <div className="related-artists">
+                    <p className="title">Related Artists</p>
+                    { relatedArtistRows }
+                </div>
+            )
         } else {
             relatedArtistElements = (
                 <div className="no-related-artists">
@@ -98,7 +104,7 @@ class App extends React.Component {
                         resultsElement
                     }
                     { (searchTerm === '') &&
-                        <div>
+                        <div className="welcome">
                             <h1>Welcome to ACME's <strong>Related Artist Search Engine</strong></h1>
                             <p><strong>Search</strong> for an artist, <strong>Click</strong> on their image, <strong>Discover</strong> new artists</p>
                         </div>

@@ -1,5 +1,7 @@
 .artist-preview {
     font-size: 16px;
+    float: left;
+    width: 100%;
 
     &.selected {
         .inner {
@@ -10,6 +12,9 @@
         }
         .related-artists {
             max-height: inherit;
+            -webkit-box-shadow: inset 0px 0px 9px 0px rgba(0,0,0,0.75);
+            -moz-box-shadow: inset 0px 0px 9px 0px rgba(0,0,0,0.75);
+            box-shadow: inset 0px 0px 9px 0px rgba(0,0,0,0.75);
         }
     }
     .inner {
@@ -20,6 +25,7 @@
         background-color: #000;
         box-sizing: border-box;
         cursor: pointer;
+        text-align: center;
 
         .artist-thumbnail {
             position: absolute;
@@ -35,23 +41,40 @@
             -webkit-transition: 200ms ease-in;
         }
         .artist-info {
-            position: absolute;
+            color: #fff;;
+            position: relative;
             z-index: 2;
-            color: #fff;
-            width: 200px;
-            margin-left: 50%;
-            left: -100px;
-            text-align: center;
-            font-size: 2em;
+            margin-top: 1.5em;
+
+            strong {
+                font-size: 2em;
+            }
+            p {
+                font-size: 1.5em;
+            }
         }
     }
     .related-artists {
         max-height: 0px;
         position: relative;
         width: 100%;
-
+        padding: 10px;
+        float: left;
         transition: 200ms ease-in;
         -moz-transition: 200ms ease-in;
         -webkit-transition: 200ms ease-in;
+
+        .title {
+            font-size: 1.5em;
+            margin: 0 0 0.7em 0;
+        }
+        .related-artist {
+            margin-bottom: 0.7em;
+        }
+    }
+    .no-related-artists {
+        float: left;
+        width: 100%;
+        text-align: center;
     }
 }
