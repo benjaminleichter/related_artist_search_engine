@@ -30,47 +30,59 @@ class App extends React.Component {
             selectedArtistRelatedArtistDataById
         } = this.props;
 
-        const relatedArtistElements = Object.keys(selectedArtistRelatedArtistDataById).map((artistId) => {
-            const currentArtist = selectedArtistRelatedArtistDataById[artistId];
-            return (
-                <div key={ artistId }>
-                    { currentArtist.name }
+        let relatedArtistElements;
+        const relatedArtistIds = Object.keys(selectedArtistRelatedArtistDataById);
+        if (relatedArtistIds.length > 0) {
+            relatedArtistElements = relatedArtistIds.map((artistId) => {
+                const currentArtist = selectedArtistRelatedArtistDataById[artistId];
+                return (
+                    <div key={ artistId }>
+                        { currentArtist.name }
+                    </div>
+                );
+            });
+        } else {
+            relatedArtistElements = (
+                <div className="no-related-artists">
+                    <p>
+                        There don't seem to be any related artists for the selected artist.
+                    </p>
                 </div>
-            );
-        });
-
-        const artistElements = Object.keys(artistDataById).map((artistId) => {
-            const currentArtist = artistDataById[artistId];
-            const handleOnClick = () => this.handleArtistElementClick(artistId);
-            const isSelected = artistId === selectedArtistId;
-            return (
-                <ArtistPreview
-                    key={ artistId }
-                    onClick={ handleOnClick }
-                    imagePath={ currentArtist.imagePath }
-                    isSelected={ isSelected }
-                    name={ currentArtist.name }
-                    popularity={ currentArtist.popularity }
-                >
-                    { isSelected &&
-                        relatedArtistElements
-                    }
-                </ArtistPreview>
-            );
-        });
+            )
+        }
 
         let resultsElement;
-        if (artistElements.length > 0) {
-            resultsElement = artistElements;
+        const artistIds = Object.keys(artistDataById);
+        if (artistIds.length > 0) {
+            resultsElement = artistIds.map((artistId) => {
+                const currentArtist = artistDataById[artistId];
+                const handleOnClick = () => this.handleArtistElementClick(artistId);
+                const isSelected = artistId === selectedArtistId;
+                return (
+                    <ArtistPreview
+                        key={ artistId }
+                        onClick={ handleOnClick }
+                        imagePath={ currentArtist.imagePath }
+                        isSelected={ isSelected }
+                        name={ currentArtist.name }
+                        popularity={ currentArtist.popularity }
+                    >
+                        { isSelected &&
+                            relatedArtistElements
+                        }
+                    </ArtistPreview>
+                );
+            });
         } else {
             resultsElement = (
-                <div>
+                <div className="no-artists-matching-search">
                     <p>
                         There are no artists matching your search! Check your spelling or search for another artist.
                     </p>
                 </div>
             );
         }
+
         return (
             <div id="app">
                 <Header
@@ -88,9 +100,7 @@ class App extends React.Component {
                     { (searchTerm === '') &&
                         <div>
                             <h1>Welcome to ACME's <strong>Related Artist Search Engine</strong></h1>
-                            <p><strong>Search</strong> for an artist</p>
-                            <p><strong>Click</strong> on their image</p>
-                            <p><strong>Discover</strong> new artists</p>
+                            <p><strong>Search</strong> for an artist, <strong>Click</strong> on their image, <strong>Discover</strong> new artists</p>
                         </div>
                     }
                 </div>

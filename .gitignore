@@ -1,5 +1,5 @@
 node_modules
-static/js/gen
+*/gen/*
 venv
 redis/dump.rdb
 .vscode
