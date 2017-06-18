@@ -11,6 +11,7 @@
   "license": "ISC",
   "dependencies": {
     "connect": "^3.6.2",
+    "node-sass": "^4.5.3",
     "prop-types": "^15.5.10",
     "react": "^15.6.0",
     "react-dom": "^15.6.0",
@@ -26,6 +27,7 @@
     "babel-preset-react": "^6.24.1",
     "css-loader": "^0.28.4",
     "sass-loader": "^6.0.5",
-    "style-loader": "^0.18.2"
+    "style-loader": "^0.18.2",
+    "webpack": "^2.6.1"
   }
 }

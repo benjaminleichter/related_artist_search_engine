@@ -11,21 +11,28 @@ const makeGetRequest = (url) => {
                 }
             }
         }
-
         xmlhttp.open('GET', url);
         xmlhttp.responseType = 'json';
         xmlhttp.send(null);
     })
 };
 
-const deserializeArtistInfo = (artistInfo) => ({
-    imagePath: ((artistInfo.images[0] || {}).url || null),
-    name: artistInfo.name,
-    popularity: artistInfo.popularity,
-    genres: artistInfo.genres
-});
+const getArtistsDataByIdFromArists = (artists) => {
+    const artistDataById = {};
+
+    artists.items.forEach((artistInfo) => {
+        artistDataById[artistInfo.id] = {
+            imagePath: ((artistInfo.images[0] || {}).url || null),
+            name: artistInfo.name,
+            popularity: artistInfo.popularity,
+            genres: artistInfo.genres
+        }
+    });
+
+    return artistDataById;
+}
 
 export const RequestHelpers = {
-    deserializeArtistInfo,
+    getArtistsDataByIdFromArists,
     makeGetRequest,
 }

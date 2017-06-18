@@ -1,6 +1,6 @@
 ## readme
 
-1. Follow the instructions to install Flask if you don’t have it installed already. Note that you don’t have to create a virtual env as one is already created in the project.
+1. Follow the instructions to install Flask and VirtualEnv if you don’t have them installed already.
     1. http://flask.pocoo.org/docs/0.12/installation/#
 2. Make sure you have PIP installed for managing our Python dependencies
     1. https://pip.pypa.io/en/stable/installing/

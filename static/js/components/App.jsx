@@ -124,17 +124,16 @@ class App extends React.Component {
                 if (value === '') {
                     this.props.dispatch(actions.setSelectedArtistId(''));
                     this.props.dispatch(actions.setArtistDataById({}));
-                    this.props.dispatch(actions.setSelectedArtistRelatedArtistDataById({}));
-                    resolve();
+                    resolve({});
                 } else {
                     ApiManager.searchArtistByName(value)
                     .then((artistDataById) => {
-                        this.props.dispatch(actions.setArtistDataById(artistDataById));
-                        resolve();
+                        resolve(artistDataById);
                     });
                 }
             })
-            .then(() => {
+            .then((artistDataById) => {
+                this.props.dispatch(actions.setArtistDataById(artistDataById));
                 this.props.dispatch(actions.setSearchTerm(value));
                 this.props.dispatch(actions.setIsLoading(false));
             });
@@ -144,7 +143,6 @@ class App extends React.Component {
         const currentArtist = this.props.artistDataById[artistId];
         const genre = currentArtist.genres[0];
         const artistName = currentArtist.name;
-
         if (artistId === this.props.selectedArtistId) {
             this.props.dispatch(actions.setSelectedArtistRelatedArtistDataById({}));
             this.props.dispatch(actions.setSelectedArtistId(''));
@@ -153,11 +151,11 @@ class App extends React.Component {
             new Promise((resolve, reject) => {
                 ApiManager.searchRelatedArtistsByGenre(artistName, genre)
                 .then((artistDataById) => {
-                    this.props.dispatch(actions.setSelectedArtistRelatedArtistDataById(artistDataById));
-                    resolve();
+                    resolve(artistDataById);
                 })
             })
-            .then(() => {
+            .then((artistDataById) => {
+                this.props.dispatch(actions.setSelectedArtistRelatedArtistDataById(artistDataById));
                 this.props.dispatch(actions.setSelectedArtistId(artistId));
                 this.props.dispatch(actions.setIsLoading(false));
             })
