@@ -105,7 +105,7 @@ class App extends React.Component {
                     }
                     { (searchTerm === '') &&
                         <div className="welcome">
-                            <h1>Welcome to ACME's <strong>Related Artist Search Engine</strong></h1>
+                            <h1>Welcome to ACME's <strong>Related Artist Search Engine</strong>.</h1>
                             <p><strong>Search</strong> for an artist, <strong>Click</strong> on their image, <strong>Discover</strong> new artists</p>
                         </div>
                     }
@@ -118,26 +118,27 @@ class App extends React.Component {
     }
     handleSearch() {
         const value = this.props.searchBarValue;
-
-        this.props.dispatch(actions.setIsLoading(true));
-        new Promise((resolve, reject) => {
-            if (value === '') {
-                this.props.dispatch(actions.setSelectedArtistId(''));
-                this.props.dispatch(actions.setArtistDataById({}));
-                this.props.dispatch(actions.setSelectedArtistRelatedArtistDataById({}));
-                resolve();
-            } else {
-                ApiManager.searchArtistByName(value)
-                .then((artistDataById) => {
-                    this.props.dispatch(actions.setArtistDataById(artistDataById));
+        if (value !== this.props.searchTerm) {
+            this.props.dispatch(actions.setIsLoading(true));
+            new Promise((resolve, reject) => {
+                if (value === '') {
+                    this.props.dispatch(actions.setSelectedArtistId(''));
+                    this.props.dispatch(actions.setArtistDataById({}));
+                    this.props.dispatch(actions.setSelectedArtistRelatedArtistDataById({}));
                     resolve();
-                });
-            }
-        })
-        .then(() => {
-            this.props.dispatch(actions.setSearchTerm(value));
-            this.props.dispatch(actions.setIsLoading(false));
-        })
+                } else {
+                    ApiManager.searchArtistByName(value)
+                    .then((artistDataById) => {
+                        this.props.dispatch(actions.setArtistDataById(artistDataById));
+                        resolve();
+                    });
+                }
+            })
+            .then(() => {
+                this.props.dispatch(actions.setSearchTerm(value));
+                this.props.dispatch(actions.setIsLoading(false));
+            });
+        }
     }
     handleArtistElementClick(artistId) {
         const currentArtist = this.props.artistDataById[artistId];
